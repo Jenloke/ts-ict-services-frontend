@@ -7,11 +7,10 @@
 		const response = await fetch('/api'); 
     Equipment = await response.json()
 	});
-
 </script>
  
 <Table.Root>
-  <Table.Caption>A list of your recent invoices.</Table.Caption>
+  <Table.Caption>A list of ICT Equipments</Table.Caption>
   <Table.Header>
     <Table.Row>
       <Table.Head>Equipment ID</Table.Head>
