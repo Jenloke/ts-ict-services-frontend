@@ -6,7 +6,7 @@ import { zod } from 'sveltekit-superforms/adapters';
 const loginSchema = z.object({
   username: z.string(),
   password: z.string()
-});
+}).required();
 
 export const load = async () => {
 

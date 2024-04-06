@@ -1,23 +1,35 @@
-import { getEquipmentCollection } from './src/db/mongo';
-import { deleteEquipment, createEquipment } from './src/db/equipmentFunc';
+// @ts-ignore
+import { getEquipmentCollection } from '$db/mongo';
+// @ts-ignore
+import { deleteEquipment, createEquipment } from '$db/equipmentFunc';
 
 import { json } from '@sveltejs/kit';
 
 //create - done
-export async function POST(requestEvent) {
-  const { request } = requestEvent;
-  const { equipmentID, issuedTo, condition, location, noOfUnits, remarks, status, usageRate } = request;
+// export async function POST({ request }) {
+//   // const { request } = requestEvent;
+//   const { equipmentID, issuedTo, condition, location, noOfUnits, remarks, status, usageRate } = await request.json();
 
-  try {
-    const result = await createEquipment(equipmentID, issuedTo, condition, location, noOfUnits, remarks, status, usageRate);
-    return json(result, {status: 201, message: 'Equipment added'})
-  } catch (error) {
-    console.error('Error creating equipment:', error);
-    return {
-      status: 500,
-      body: { message: 'Internal server error' }
-    };
-  }
+//   //auth object
+
+//   try {
+//     const result = await createEquipment(equipmentID, issuedTo, condition, location, noOfUnits, remarks, status, usageRate);
+//     return json(result, {status: 201, message: 'Equipment added'})
+//   } catch (error) {
+//     console.error('Error creating equipment:', error);
+//     return {
+//       status: 500,
+//       body: { message: 'Internal server error' }
+//     };
+//   }
+// }
+
+export const POST = async ({ request }) => {
+  const body = await request.json()
+  
+  console.log(body)
+
+  return new Response(JSON.stringify({message: "Success"})) 
 }
 
 //read
@@ -42,55 +54,55 @@ export async function GET() {
 }
 
 //update
-export async function PUT(request) {
-  const { id } = request.params;
+// export async function PUT(request) {
+//   const { id } = request.params;
 
-  try {
-    const equipment = await getEquipmentCollection();
-    const result = await equipment.updateOne({ equipmentID: id }, { $set: request.body });
-    if (result.modifiedCount === 1) {
-      return {
-        status: 200,
-        body: { message: 'Equipment updated successfully' }
-      };
-    } else {
-      return {
-        status: 404,
-        body: { message: 'Equipment not found' }
-      };
-    }
-  } catch (error) {
-    console.error('Error updating Equipment:', error);
-    return {
-      status: 500,
-      body: { message: 'Internal server error' }
-    };
-  }
-}
+//   try {
+//     const equipment = await getEquipmentCollection();
+//     const result = await equipment.updateOne({ equipmentID: id }, { $set: request.body });
+//     if (result.modifiedCount === 1) {
+//       return {
+//         status: 200,
+//         body: { message: 'Equipment updated successfully' }
+//       };
+//     } else {
+//       return {
+//         status: 404,
+//         body: { message: 'Equipment not found' }
+//       };
+//     }
+//   } catch (error) {
+//     console.error('Error updating Equipment:', error);
+//     return {
+//       status: 500,
+//       body: { message: 'Internal server error' }
+//     };
+//   }
+// }
 
-//delete
-export async function DELETE(request) {
-  const { id } = request.params;
+// //delete
+// export async function DELETE(request) {
+//   const { id } = request.params;
 
-  try {
-    const result = await deleteEquipment(id)
-    if (result === 1) {
-      return {
-        status: 200,
-        body: { message: 'Equipment deleted successfully' }
-      };
-    } else {
-      return {
-        status: 404,
-        body: { message: 'Equipment not found' }
-      };
-    }
-  } catch (error) {
-    console.error('Error deleting equipment:', error);
-    return {
-      status: 500,
-      body: { message: 'Internal server error' }
-    };
-  }
-}
+//   try {
+//     const result = await deleteEquipment(id)
+//     if (result === 1) {
+//       return {
+//         status: 200,
+//         body: { message: 'Equipment deleted successfully' }
+//       };
+//     } else {
+//       return {
+//         status: 404,
+//         body: { message: 'Equipment not found' }
+//       };
+//     }
+//   } catch (error) {
+//     console.error('Error deleting equipment:', error);
+//     return {
+//       status: 500,
+//       body: { message: 'Internal server error' }
+//     };
+//   }
+// }
   

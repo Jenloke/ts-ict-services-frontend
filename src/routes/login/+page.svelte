@@ -4,13 +4,15 @@
   //import { Button } from "$lib/components/ui/button/index.js";
   import { superForm } from "sveltekit-superforms/client";
   import SuperDebug from 'sveltekit-superforms';
-  //import { page } from '$app/stores';
+  //import { page } from '$app/stores';\
+
+  import { zodClient } from "sveltekit-superforms/adapters";
 
   import type { PageData } from './$types.js';
 
   export let data: PageData;
 
-  const { form, message, enhance } = superForm(data.form);
+  const { form, message, enhance } = superForm(data.form, {validators: zodClient(data.form)});
 </script>
 
 <SuperDebug data={$form} collapsible />
