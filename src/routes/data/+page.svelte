@@ -1,16 +1,9 @@
 <script lang="ts">
-  import { onMount } from "svelte";
   import type { PageData } from "./$types";
   import * as Table from "$lib/components/ui/table/index.js";
  
   export let data: PageData;
   const Equipment = data.equipments
-
-  // let Equipment = [];
-  // onMount(async () => {
-	// 	const response = await fetch('/api'); 
-  //   Equipment = await response.json()
-	// });
 </script>
  
 <Table.Root>
