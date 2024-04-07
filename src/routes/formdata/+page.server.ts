@@ -4,7 +4,8 @@ import { superValidate } from "sveltekit-superforms";
 import { formSchema } from "./schema";
 import { zod } from "sveltekit-superforms/adapters";
 
-import { POST } from "../api/+server.js";
+// @ts-ignore
+import { equipment } from "$db/equipment";
 
 export const load: PageServerLoad = async () => {
   return {
@@ -22,19 +23,41 @@ export const actions: Actions = {
     }
 
     // make post request to mongodb
-    console.log(form.data)
+    let { data } = form
 
-    console.log(form.data.username)
-    console.log(form.data.company)
-    console.log(form.data.email)
+    // console.log(data.issuedTo)
 
-    // const { equipmentID, issuedTo, condition, location, noOfUnits, remarks, status, usageRate } = await request.json();
-    // const res = await fetch() // link to website
-    // POST()
-
+    // const result = await equipment.insertOne({ equipmentID, issuedTo, condition, location, noOfUnits, remarks, status, usageRate});
+    
+    try {
+      await equipment.insertOne({...data});
+      console.log("data inserted")
+    } catch (error) {
+      console.log(error)
+    }
 
     return {
       form,
     };
   },
 };
+
+
+//create - done
+// export async function POST({ request }) {
+//   // const { request } = requestEvent;
+//   const { equipmentID, issuedTo, condition, location, noOfUnits, remarks, status, usageRate } = await request.json();
+
+//   //auth object
+
+//   try {
+//     const result = await createEquipment(equipmentID, issuedTo, condition, location, noOfUnits, remarks, status, usageRate);
+//     return json(result, {status: 201, message: 'Equipment added'})
+//   } catch (error) {
+//     console.error('Error creating equipment:', error);
+//     return {
+//       status: 500,
+//       body: { message: 'Internal server error' }
+//     };
+//   }
+// }

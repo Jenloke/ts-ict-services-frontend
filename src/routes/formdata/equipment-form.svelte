@@ -9,7 +9,6 @@
     superForm,
   } from "sveltekit-superforms";
   import { zodClient } from "sveltekit-superforms/adapters";
-	import { Control } from "formsnap";
  
   export let data: SuperValidated<Infer<FormSchema>>;
  
