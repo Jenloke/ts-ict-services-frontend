@@ -1,28 +1,38 @@
-import { z } from 'zod'
-import { fail } from '@sveltejs/kit';
-import { message, superValidate } from 'sveltekit-superforms/server';
-import { zod } from 'sveltekit-superforms/adapters';
+import type { PageServerLoad, Actions } from "./$types.js";
+import { fail } from "@sveltejs/kit";
+import { superValidate } from "sveltekit-superforms";
+import { formSchema } from "./schema";
+import { zod } from "sveltekit-superforms/adapters";
 
-const loginSchema = z.object({
-  username: z.string(),
-  password: z.string()
-}).required();
+// @ts-ignore
+import { admin } from "$db/admin";
 
-export const load = async () => {
-
-  const form = await superValidate(zod(loginSchema));
-
-  console.log("loaded");
-  return { form };
+export const load: PageServerLoad = async () => {
+  return {
+    form: await superValidate(zod(formSchema)),
+  };
 };
 
-export const actions = {
-  login: async ({ request }) => {
-    const form = await superValidate(request, zod(loginSchema));
-    
-    if (!form.valid) return fail(400, { form });
-  
-    // route to wherever
-    return message(form, 'Login form submitted');
-  }
+export const actions: Actions = {
+  default: async (event) => {
+    const form = await superValidate(event, zod(formSchema));
+    if (!form.valid) {
+      return fail(400, {
+        form,
+      });
+    }
+
+    let { data } = form
+
+    try {
+      await admin.insertOne({...data});
+      console.log("data inserted")
+    } catch (error) {
+      console.log(error)
+    }
+
+    return {
+      form,
+    };
+  },
 };
