@@ -19,35 +19,33 @@
   const { form: formData, enhance } = form;
 </script>
  
+<div class="mt-auto">
+  <div class="w-80 h-96 my-7 mx-auto px-6 bg-gray-500/10 border-2 border-dashed rounded-lg shadow-lg">
+  <form class="my-7 py-10" method="POST" use:enhance>
+    <Form.Field {form} name="email">
+      <Form.Control let:attrs>
+        <Form.Label>Email</Form.Label>
+        <Input {...attrs} placeholder="E-mail" bind:value={$formData.email} />
+      </Form.Control>
+      <Form.FieldErrors />
+    </Form.Field>
+    
+    <Form.Field {form} name="password">
+      <Form.Control let:attrs>  
+        <Form.Label>Password</Form.Label>
+        <Input {...attrs} type="password" placeholder="password" bind:value={$formData.password} />
+      </Form.Control>
+      <Form.FieldErrors />
+    </Form.Field>
+    <div class="container mt-10 mx-auto px-4 justify-center flex ">
+    <Form.Button>Login</Form.Button>
+    </div>
+  </form>
 
-<div>
-<form method="POST" use:enhance>
-  <Form.Field {form} name="email">
-    <Form.Control let:attrs>
-      <Form.Label>Email</Form.Label>
-      <Input {...attrs} bind:value={$formData.email} />
-    </Form.Control>
-    <Form.Description>This is your Equipment ID.</Form.Description>
-    <Form.FieldErrors />
-  </Form.Field>
-  
-  <Form.Field {form} name="password">
-    <Form.Control let:attrs>  
-      <Form.Label>Password</Form.Label>
-      <Input {...attrs} type="password" bind:value={$formData.password} />
-    </Form.Control>
-    <Form.Description>This is your Issued To.</Form.Description>
-    <Form.FieldErrors />
-  </Form.Field>
-  
-  <Form.Button>Login</Form.Button>
-</form>
-
-<SuperDebug data={formData}/>
+  <!-- <SuperDebug data={formData}/> -->
+  </div>
 </div>
 
+
 <style>
-  div {
-    margin: 30px;
-  }
 </style>
