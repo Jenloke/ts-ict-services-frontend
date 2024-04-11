@@ -92,7 +92,7 @@
   const hidableCols = ["numOfUnits", "remarks", "usageRate"];
 </script>
 
-<div>
+<div class="w-9/12 mx-auto px-4 bg-zinc-50 border-2 border-dashed rounded-lg shadow-lg">
   <div class="flex items-center py-4">
     <Input
       class="max-w-sm"
