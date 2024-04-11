@@ -5,7 +5,7 @@ import { formSchema } from "./schema";
 import { zod } from "sveltekit-superforms/adapters";
 
 // @ts-ignore
-import { admin } from "$db/admin";
+import { admin } from "$db/collection";
 
 export const load: PageServerLoad = async () => {
   return {

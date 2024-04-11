@@ -5,7 +5,7 @@ import { formSchema } from "./schema";
 import { zod } from "sveltekit-superforms/adapters";
 
 // @ts-ignore
-import { equipment } from "$db/equipment";
+import { equipment } from "$db/collection";
 
 export const load: PageServerLoad = async () => {
   return {
@@ -25,7 +25,9 @@ export const actions: Actions = {
     // make post request to mongodb
     let { data } = form
 
-    // console.log(data.issuedTo)
+    console.log(data)
+    console.log(data.startDate)
+    console.log(typeof(data.startDate))
 
     // const result = await equipment.insertOne({ equipmentID, issuedTo, condition, location, noOfUnits, remarks, status, usageRate});
     

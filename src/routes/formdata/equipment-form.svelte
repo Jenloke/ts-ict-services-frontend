@@ -17,6 +17,35 @@
   });
  
   const { form: formData, enhance } = form;
+
+  // import CalendarIcon from "svelte-radix/Calendar.svelte";
+  import {
+    DateFormatter,
+    type DateValue,
+    getLocalTimeZone,
+    parseDate,
+    today
+  } from "@internationalized/date";
+  // import { toast } from "svelte-sonner";
+  // import { browser } from "$app/environment";
+  // import { page } from "$app/stores";
+  import { cn } from "$lib/utils.js";
+  import {
+    buttonVariants
+  } from "$lib/components/ui/button/index.js";
+  import { Calendar } from "$lib/components/ui/calendar/index.js";
+  import * as Popover from "$lib/components/ui/popover/index.js";
+
+  const df = new DateFormatter("en-US", {
+    dateStyle: "long"
+  });
+
+  let value: DateValue | undefined;
+ 
+  $: value = $formData.startDate ? parseDate($formData.startDate) : undefined;
+ 
+  let placeholder: DateValue = today(getLocalTimeZone());
+
 </script>
  
 
@@ -73,6 +102,46 @@
     </Form.Control>
     <Form.Description>This is your status.</Form.Description>
     <Form.FieldErrors />
+  </Form.Field>
+
+  <Form.Field {form} name="startDate" class="flex flex-col">
+    <Form.Control let:attrs>
+      <Form.Label>Start Date</Form.Label>
+      <Popover.Root>
+        <Popover.Trigger
+          {...attrs}
+          class={cn(
+            buttonVariants({ variant: "outline" }),
+            "w-[280px] justify-start pl-4 text-left font-normal",
+            !value && "text-muted-foreground"
+          )}
+        >
+          {value ? df.format(value.toDate(getLocalTimeZone())) : "Pick a start date"}
+        </Popover.Trigger>
+        <Popover.Content class="w-auto p-0" side="top">
+          <Calendar
+            {value}
+            bind:placeholder
+            minValue={today(getLocalTimeZone())}
+            
+            calendarLabel="Start Date"
+            initialFocus
+            onValueChange={(v) => {
+              if (v) {
+                $formData.startDate = v.toString();
+              } else {
+                $formData.startDate = "";
+              }
+            }}
+          />
+        </Popover.Content>
+      </Popover.Root>
+      <Form.Description>
+        Your date of birth is used to calculator your age
+      </Form.Description>
+      <Form.FieldErrors />
+      <input hidden value={$formData.startDate} name={attrs.name} />
+    </Form.Control>
   </Form.Field>
   
   <Form.Button>Submit</Form.Button>

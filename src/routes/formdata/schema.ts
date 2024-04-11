@@ -18,6 +18,12 @@ export const formSchema = z.object({
   condition: z.string(),
   location: z.string(),
   status: z.string(),
+  startDate: 
+    z.string()
+    .refine((v) => v, {
+      message: "Date of start of lifespanm is required."
+    }),
+  // startDate: z.coerce.date(),
 }).required();
  
 export type FormSchema = typeof formSchema;

@@ -1,5 +1,5 @@
 // @ts-ignore
-import { equipment } from "$db/equipment";
+import { equipment } from "$db/collection";
 import type { PageServerLoad } from './$types'
 
 export const load: PageServerLoad = async function() {
