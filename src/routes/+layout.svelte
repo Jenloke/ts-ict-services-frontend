@@ -1,6 +1,6 @@
 <script>import "../app.pcss";</script>
 
-<nav class="hidden">
+<nav>
   <a href="/login">Login</a>
   
   <a href="/formdata">Form</a>
