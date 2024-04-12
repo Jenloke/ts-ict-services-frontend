@@ -41,7 +41,7 @@
       header: "Location",
     }),
     table.column({
-      accessor: "numOfUnits",
+      accessor: "noOfUnits",
       header: "Number of Units",
     }),
     table.column({
@@ -72,6 +72,10 @@
       cell: ({ value }) => {
         return createRender(DataTableActions, { id: value });
       },
+    }),
+    table.column({
+      accessor: "startDate",
+      header: "Start Date",
     }),
   ]);
 
@@ -200,3 +204,9 @@
 </Table.Root>
 </div>
 -->
+
+<style>
+  div {
+    background-color: antiquewhite;
+  }
+</style>
