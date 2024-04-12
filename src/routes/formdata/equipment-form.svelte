@@ -48,108 +48,108 @@
 
 </script>
  
+<div class="w-screen content-center  ">
+  <div class="w-6/12 mx-auto py-12 px-12 bg-zinc-50 border-2 border-dashed rounded-lg shadow-lg">
+  <form method="POST" use:enhance>
+    <!-- 
+    equipmentID: z.string(),
+    issuedTo: z.string(),
+    condition: z.string(),
+    location: z.string(),
+    status: z.string(),
+    -->
 
-<div>
-<form method="POST" use:enhance>
-  <!-- 
-  equipmentID: z.string(),
-  issuedTo: z.string(),
-  condition: z.string(),
-  location: z.string(),
-  status: z.string(),
-  -->
-
-  <Form.Field {form} name="equipmentID">
-    <Form.Control let:attrs>
-      <Form.Label>equipmentID</Form.Label>
-      <Input {...attrs} bind:value={$formData.equipmentID} />
-    </Form.Control>
-    <Form.Description>This is your Equipment ID.</Form.Description>
-    <Form.FieldErrors />
-  </Form.Field>
-  
-  <Form.Field {form} name="issuedTo">
-    <Form.Control let:attrs>
-      <Form.Label>issuedTo</Form.Label>
-      <Input {...attrs} bind:value={$formData.issuedTo} />
-    </Form.Control>
-    <Form.Description>This is your Issued To.</Form.Description>
-    <Form.FieldErrors />
-  </Form.Field>
-
-  <Form.Field {form} name="condition">
-    <Form.Control let:attrs>
-      <Form.Label>condition</Form.Label>
-      <Input {...attrs} bind:value={$formData.condition} />
-    </Form.Control>
-    <Form.Description>This is your Condition.</Form.Description>
-    <Form.FieldErrors />
-  </Form.Field>
-  
-  <Form.Field {form} name="location">
-    <Form.Control let:attrs>
-      <Form.Label>location</Form.Label>
-      <Input {...attrs} bind:value={$formData.location} />
-    </Form.Control>
-    <Form.Description>This is your company name.</Form.Description>
-    <Form.FieldErrors />
-  </Form.Field>
-
-  <Form.Field {form} name="status">
-    <Form.Control let:attrs>
-      <Form.Label>status</Form.Label>
-      <Input {...attrs} bind:value={$formData.status} />
-    </Form.Control>
-    <Form.Description>This is your status.</Form.Description>
-    <Form.FieldErrors />
-  </Form.Field>
-
-  <Form.Field {form} name="startDate" class="flex flex-col">
-    <Form.Control let:attrs>
-      <Form.Label>Start Date</Form.Label>
-      <Popover.Root>
-        <Popover.Trigger
-          {...attrs}
-          class={cn(
-            buttonVariants({ variant: "outline" }),
-            "w-[280px] justify-start pl-4 text-left font-normal",
-            !value && "text-muted-foreground"
-          )}
-        >
-          {value ? df.format(value.toDate(getLocalTimeZone())) : "Pick a start date"}
-        </Popover.Trigger>
-        <Popover.Content class="w-auto p-0" side="top">
-          <Calendar
-            {value}
-            bind:placeholder
-            minValue={today(getLocalTimeZone())}
-            
-            calendarLabel="Start Date"
-            initialFocus
-            onValueChange={(v) => {
-              if (v) {
-                $formData.startDate = v.toString();
-              } else {
-                $formData.startDate = "";
-              }
-            }}
-          />
-        </Popover.Content>
-      </Popover.Root>
-      <Form.Description>
-        Your date of birth is used to calculator your age
-      </Form.Description>
+    <Form.Field {form} name="equipmentID">
+      <Form.Control let:attrs>
+        <Form.Label>equipmentID</Form.Label>
+        <Input {...attrs} bind:value={$formData.equipmentID} />
+      </Form.Control>
+      <Form.Description>This is your Equipment ID.</Form.Description>
       <Form.FieldErrors />
-      <input hidden value={$formData.startDate} name={attrs.name} />
-    </Form.Control>
-  </Form.Field>
-  
-  <Form.Button>Submit</Form.Button>
-</form>
+    </Form.Field>
+    
+    <Form.Field {form} name="issuedTo">
+      <Form.Control let:attrs>
+        <Form.Label>issuedTo</Form.Label>
+        <Input {...attrs} bind:value={$formData.issuedTo} />
+      </Form.Control>
+      <Form.Description>This is your Issued To.</Form.Description>
+      <Form.FieldErrors />
+    </Form.Field>
 
-<SuperDebug data={formData}/>
+    <Form.Field {form} name="condition">
+      <Form.Control let:attrs>
+        <Form.Label>condition</Form.Label>
+        <Input {...attrs} bind:value={$formData.condition} />
+      </Form.Control>
+      <Form.Description>This is your Condition.</Form.Description>
+      <Form.FieldErrors />
+    </Form.Field>
+    
+    <Form.Field {form} name="location">
+      <Form.Control let:attrs>
+        <Form.Label>location</Form.Label>
+        <Input {...attrs} bind:value={$formData.location} />
+      </Form.Control>
+      <Form.Description>This is your company name.</Form.Description>
+      <Form.FieldErrors />
+    </Form.Field>
+
+    <Form.Field {form} name="status">
+      <Form.Control let:attrs>
+        <Form.Label>status</Form.Label>
+        <Input {...attrs} bind:value={$formData.status} />
+      </Form.Control>
+      <Form.Description>This is your status.</Form.Description>
+      <Form.FieldErrors />
+    </Form.Field>
+
+    <Form.Field {form} name="startDate" class="flex flex-col">
+      <Form.Control let:attrs>
+        <Form.Label>Start Date</Form.Label>
+        <Popover.Root>
+          <Popover.Trigger
+            {...attrs}
+            class={cn(
+              buttonVariants({ variant: "outline" }),
+              "w-[280px] justify-start pl-4 text-left font-normal",
+              !value && "text-muted-foreground"
+            )}
+          >
+            {value ? df.format(value.toDate(getLocalTimeZone())) : "Pick a start date"}
+          </Popover.Trigger>
+          <Popover.Content class="w-auto p-0" side="top">
+            <Calendar
+              {value}
+              bind:placeholder
+              minValue={today(getLocalTimeZone())}
+              
+              calendarLabel="Start Date"
+              initialFocus
+              onValueChange={(v) => {
+                if (v) {
+                  $formData.startDate = v.toString();
+                } else {
+                  $formData.startDate = "";
+                }
+              }}
+            />
+          </Popover.Content>
+        </Popover.Root>
+        <Form.Description>
+          Your date of birth is used to calculator your age
+        </Form.Description>
+        <Form.FieldErrors />
+        <input hidden value={$formData.startDate} name={attrs.name} />
+      </Form.Control>
+    </Form.Field>
+    
+    <Form.Button>Submit</Form.Button>
+  </form>
+<!-- 
+  <SuperDebug data={formData}/> -->
+  </div>
 </div>
-
 <style>
   div {
     background-color: antiquewhite;

@@ -18,10 +18,7 @@
  
   const { form: formData, enhance } = form;
 </script>
-<body class="">
-<div class="w-full h-screen content-center bg-slate-500/10 backdrop-blur-md ">
-  <div class="mt-auto">
-    <div class="w-80 h-96 mx-auto px-6 bg-neutral-50/90 border-2 border-dashed rounded-lg shadow-lg backdrop-blur-md ">
+    <div class="w-80 h-96 mx-auto px-6 bg-neutral-50/90 border-2 border-dashed rounded-lg shadow-lg  ">
     <form class="my-7 py-10" method="POST" use:enhance>
       <Form.Field {form} name="email">
         <Form.Control let:attrs>
@@ -45,9 +42,3 @@
 
     <!-- <SuperDebug data={formData}/> -->
     </div>
-  </div>
-</div>
-</body>
-
-<style>
-</style>
