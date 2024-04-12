@@ -152,6 +152,7 @@
 
 <style>
   div {
+    background-color: antiquewhite;
     margin: 30px;
   }
 </style>
