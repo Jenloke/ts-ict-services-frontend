@@ -48,7 +48,7 @@
 
 </script>
  
-<div class="w-screen content-center  ">
+<div class="w-screen content-centers">
   <div class="w-6/12 mx-auto py-12 px-12 bg-zinc-50 border-2 border-dashed rounded-lg shadow-lg">
   <form method="POST" use:enhance>
     <!-- 
@@ -150,9 +150,3 @@
   <SuperDebug data={formData}/> -->
   </div>
 </div>
-<style>
-  div {
-    background-color: antiquewhite;
-    margin: 30px;
-  }
-</style>

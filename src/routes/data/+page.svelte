@@ -205,8 +205,3 @@
 </div>
 -->
 
-<style>
-  div {
-    background-color: antiquewhite;
-  }
-</style>
