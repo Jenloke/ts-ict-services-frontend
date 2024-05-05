@@ -23,7 +23,32 @@ export const formSchema = z.object({
     .refine((v) => v, {
       message: "Date of start of lifespanm is required."
     }),
-  // startDate: z.coerce.date(),
+  
+
+  // NEW
+  // itemNumber: z.string //auto-generated format:
+	// propertyNumber: z.string //auto-generated format:
+	category: z.string(), //tbs 
+	// specification:
+		processor: z.string().optional(),
+		motherboard: z.string().optional(),
+    hdd: z.string().optional(),
+    memory: z.string().optional(),
+    videocard: z.string().optional(),
+    display: z.string().optional(),
+    opticaldriver: z.string().optional(),
+    casing: z.string().optional(),
+    mouse: z.string().optional(),
+    keyboard: z.string().optional(),
+	dateOfAcquisition: z.date(), // default is date now
+	// status: automatically set at new \
+	// location
+		department: z.string(),
+    room: z.string(),
+	campus: z.string(),
+	handler: z.string(),
+	units: z.number().int().default(1),
+
 }).required();
  
 export type FormSchema = typeof formSchema;
