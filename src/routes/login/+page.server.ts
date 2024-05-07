@@ -24,6 +24,8 @@ export const actions: Actions = {
 
     let { data } = form
 
+    console.log("logged in")
+
     try {
       await admin.insertOne({...data});
       console.log("data inserted")

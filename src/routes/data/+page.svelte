@@ -40,10 +40,10 @@
       accessor: "location",
       header: "Location",
     }),
-    table.column({
-      accessor: "noOfUnits",
-      header: "Number of Units",
-    }),
+    // table.column({
+    //   accessor: "noOfUnits",
+    //   header: "Number of Units",
+    // }),
     table.column({
       accessor: "remarks",
       header: "Remarks",
